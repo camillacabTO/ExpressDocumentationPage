@@ -27,7 +27,7 @@
                 <li><a href="#routing">Basic Routing</a></li>
                 <li><a href="#static_files">Static Files</a></li>
                 <li><a href="#middleware">Middleware</a></li>
-                <li><a href="#template-engines">Template Engines</a></li>
+                <li><a href="#template_engines">Template Engines</a></li>
             </ul>
         </div>
         <!-- <div class="mobile-menu-wrapper"> -->
@@ -85,12 +85,12 @@
                     <p><span class="purple">const</span> app = <span class="blue">express</span>()</p>
                     <p><span class="purple">const</span> port = <span class="orange">3000</span></p>
                     <br>
-                    <p>app.<span class="blue">get</span>(<span class="green">&apos;/&apos;</span>, (req, res) =&gt; {</p>
-                    <p>&nbsp; res.<span class="blue">send</span>(<span class="green">&apos;Hello World!&apos;</span>)</p>
+                    <p><span class="black">app</span>.<span class="blue">get</span>(<span class="green">&apos;/&apos;</span>, (<span class="black">req</span>, <span class="black">res</span>) =&gt; {</p>
+                    <p>&nbsp; <span class="black">res</span>.<span class="red">send</span>(<span class="green">&apos;Hello World!&apos;</span>)</p>
                     <p>})</p>
                     <br>
-                    <p>app.<span class="blue">listen</span>(port, () =&gt; {</p>
-                    <p>&nbsp; console. <span class="blue">log</span>(<span class="green">`Example app listening at http://localhost: <span class="blue">${</span><span class="orange">port</span><span class="blue">}</span>}`</span>)</p>
+                    <p><span class="black">app</span>.<span class="blue">listen</span>(port, () =&gt; {</p>
+                    <p>&nbsp; <span class="black">console</span>.<span class="red">log</span>(<span class="green">`Example app listening at http://localhost: <span class="blue">${</span><span class="orange">port</span><span class="blue">}</span>}`</span>)</p>
                     <p>)</p>
                 </code>
                 <p>This app starts a server and listens on port 3000 for connections. The app responds with “Hello
@@ -125,19 +125,19 @@
                 <p>The following examples illustrate defining simple routes.</p>
                 <p>Respond with <code class="code-span">Hello World!</code> on the homepage:</p>
                 <code class="nodejs"><span class="black">app</span>.<span class="blue">get</span>(<span class="green">'/'</span>, <span class="blue">function</span> (<span class="black">req, res</span>) { <br>
-                    <span class="black">res</span>.<span class="red">send</span>(<span class="green">'Hello World!'</span>) <br>
+                    <span class="black">&nbsp;res</span>.<span class="red">send</span>(<span class="green">'Hello World!'</span>) <br>
                   })</code>
                 <p>Respond to POST request on the root route (/), the application’s home page:</p>
                 <code class="nodejs"><span class="black">app</span>.<span class="blue">get</span>(<span class="green">'/'</span>, <span class="blue">function</span> (<span class="black">req, res</span>) { <br>
-                    <span class="black">res</span>.<span class="red">send</span>(<span class="green">'Got a POST request'</span>) <br>
+                    <span class="black">&nbsp;res</span>.<span class="red">send</span>(<span class="green">'Got a POST request'</span>) <br>
                   })</code>
                 <p>Respond to a PUT request to the <code class="code-span">/user</code> route:</p>
                 <code class="nodejs"><span class="black">app</span>.<span class="blue">get</span>(<span class="green">'/user'</span>, <span class="blue">function</span> (<span class="black">req, res</span>) { <br>
-                    <span class="black">res</span>.<span class="red">send</span>(<span class="green">'Got a PUT request at /user'</span>) <br>
+                    <span class="black">&nbsp;res</span>.<span class="red">send</span>(<span class="green">'Got a PUT request at /user'</span>) <br>
                   })</code>
                 <p>Respond to a DELETE request to the <code class="code-span">/user</code> route:</p>
                 <code class="nodejs"><span class="black">app</span>.<span class="blue">get</span>(<span class="green">'/user'</span>, <span class="blue">function</span> (<span class="black">req, res</span>) { <br>
-                    <span class="black">res</span>.<span class="red">send</span>(<span class="green">'Got a DELETE request at /user'</span>) <br>
+                    <span class="black">&nbsp;res</span>.<span class="red">send</span>(<span class="green">'Got a DELETE request at /user'</span>) <br>
                   })</code>
             </section>
             <section class="main-section" id="static_files">
@@ -149,7 +149,7 @@
                     class="nodejs"><span class="black">express</span>.<span class="blue">static</span>(<span class="black">root</span>, [<span class="black">options</span>])</code>
                 <p>The root argument specifies the root directory from which to serve static assets.</p>
                 <p>For example, use the following code to serve images, CSS files, and JavaScript files in a directory
-                    named <span class="code-span">public</span>:</p>
+                    named <code class="code-span">public</code></p>
                 <code
                     class="nodejs"><span class="black">app</span>.<span class="red">use</span>(<span class="black">express</span>.<span class="blue">static</span>(<span class="green">'public'</span>))</code>
                 <p>Now, you can load the files that are in the public directory:</p>
@@ -187,8 +187,42 @@
                         class="code-span">req</code>), the response object (<code class="code-span">res</code>), and the
                     next function in the application’s request-response cycle. The next function is a function in the
                     Express router which, when invoked, executes the middleware succeeding the current middleware.</p>
+                <p>Middleware functions can perform the following tasks:</p>
+                <ul class="text-ul">
+                    <li>Execute any code.</li>
+                    <li>Make changes to the request and the response objects.</li>
+                    <li>End the request-response cycle.</li>
+                    <li>Call the next middleware in the stack.</li>
+                </ul>
+                <p>If the current middleware function does not end the request-response cycle, it must call next() to
+                    pass control to the next middleware function. Otherwise, the request will be left hanging.</p>
+                <p>Starting with Express 5, middleware functions that return a Promise will call <code
+                        class="code-span">next(value)</code> when they reject or throw an error. <code
+                        class="code-span">next</code> will be called with either the rejected value or the thrown Error.
+                </p>
+                <h4>Example: Middleware function myLogger</h4>
+                <p>Here is a simple example of a middleware function called “myLogger”. This function just prints
+                    “LOGGED” when a request to the app passes through it. The middleware function is assigned to a
+                    variable named <code class="code-span">myLogger</code>.</p>
+                <p>To load the middleware function, call <code class="code-span">app.use()</code>, specifying the
+                    middleware function. For example, the following code loads the <code
+                        class="code-span">myLogger</code> middleware function before the route to the root path (/).</p>
+                <code class="nodejs">
+                            <p><span class="purple">const</span> express = <span class="blue">require<span>(<span class="green">&apos;express&apos;</span>)</p>
+                            <p><span class="purple">const</span> app = <span class="blue">express</span>()</p>
+                            <br>
+                            <p><span class="blue">var </span><span class="black">myLogger</span> = <span class="blue">function</span> (<span class="black">req</span>, <span class="black">res</span>, <span class="black">next</span>) { </p>
+                                <p><span class="black">&nbsp;console</span>.<span class="span red">log</span>(<span class="green">'LOGGED'</span>)</p>
+                                <p><span class="red">&nbsp;next</span>() </p> <p>}</p><br>
+                            <p><span class="black">app</span>.<span class="red">use</span>(<span class="black">myLogger</span>)</p><br>
+                            <p><span class="black">app</span>.<span class="blue">get</span>(<span class="green">&apos;/&apos;</span>, (<span class="black">req</span>, <span class="black">res</span>) =&gt; {</p>
+                            <p>&nbsp; res.<span class="red">send</span>(<span class="green">&apos;Hello World!&apos;</span>)</p>
+                            <p>})</p>
+                            <br>
+                            <p><span class="black">app</span>.<span class="red">listen</span>(<span class="orange">3000</span>)</p>
+                </code>
             </section>
-            <section class="main-section" id="template-engines">
+            <section class="main-section" id="template_engines">
                 <header>Using template engines with Express</header>
                 <p>A <b><em>template engine</em></b> enables you to use static template files in your application. At
                     runtime, the template engine replaces variables in a template file with actual values, and
@@ -201,25 +235,28 @@
                 <p> To render template files, set the following <span class="blue">application setting
                         properties</span>, set in app.js in the default app created by the generator:</p>
                 <ul class="text-ul">
-                    <li>views, the directory where the template files are located. Eg: app.set('views', './views'). This
-                        defaults to the views directory in the application root directory.</li>
-                    <li>view engine, the template engine to use. For example, to use the Pug template engine:
-                        app.set('view engine', 'pug').</li>
+                    <li><code class="code-span">views</code>, the directory where the template files are located. Eg:
+                        <code class="code-span">app.set('views', './views')</code>. This defaults to the views directory
+                        in the application root directory.</li>
+                    <li><code class="code-span">view engine</code>, the template engine to use. For example, to use the
+                        Pug template engine: <code class="code-span">app.set('view engine', 'pug')</code>.</li>
                 </ul>
                 <p>Then install the corresponding template engine npm package; for example to install Pug:</p>
                 <code class="cmd-line">$ npm install pug --save</code>
                 <p>After the view engine is set, you don’t have to specify the engine or load the template engine module
                     in your app; Express loads the module internally, as shown below (for the above example).</p>
-                <code class="nodejs">app.set('view engine', 'pug')</code>
+                <code
+                    class="nodejs"><span class="black">app</span>.<span class="blue">set</span>(<span class="green">'view engine'</span>, <span class="green">'pug'</span>)</code>
                 <p>Create a Pug template file named index.pug in the views directory, with the following content:</p>
-                <pre><code class="nodejs"><span class="black">head
-  title= title
-body
-  h1= message</span></code></pre>
+                <pre><code class="nodejs"><span class="black">html
+  head
+    title= title
+  body
+    h1= message</span></code></pre>
                 <p>Then create a route to render the index.pug file. If the view engine property is not set, you must
                     specify the extension of the view file. Otherwise, you can omit it.</p>
-                <code class="nodejs">app.get('/', function (req, res) {
-                    res.render('index', { title: 'Hey', message: 'Hello there!' })
+                <code class="nodejs"><span class="black">app</span>.<span class="blue">get</span>(<span class="green">'/'</span>, <span class="blue">function</span> (<span class="black">req, res</span>) { <br>
+                    <span class="black">&nbsp;res</span>.<span class="red">render</span>(<span class="green">'index'</span>, { <span class="black">title</span>: <span class="green">'Hey'</span>, <span class="black">message</span>: <span class="green">'Hello there!'</span>})<br>
                   })</code>
                 <p>When you make a request to the home page, the index.pug file will be rendered as HTML.</p>
             </section>
