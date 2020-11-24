@@ -2,7 +2,7 @@
 
 :root {
   --primary-color: #ddd;
-  --primary-text-color: #000;
+  --primary-text-color: #333;
   --node-color: #3c873a;
   --blue: #007bff;
   --purple: #6f42c1;
@@ -50,7 +50,7 @@ h3 {
   margin: 2rem 0;
 }
 
-header {
+header.jumbotron {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -63,6 +63,9 @@ header {
   margin-bottom: 6rem;
 }
 
+.title-box {
+  padding-left: 1.5rem;
+}
 .title-box h1 {
   font-weight: 700;
   font-size: 6rem;
@@ -76,6 +79,7 @@ header {
 header i {
   color: var(--node-color);
   font-size: 16rem;
+  padding: 1.5rem;
 }
 
 .wrapper {
@@ -96,9 +100,15 @@ header i {
   position: sticky;
   left: 0;
   bottom: 0;
-  background-color: var(--red);
+  background-color: transparent;
   display: none;
-  max-width: fit-content;
+  height: 3rem;
+  width: 3rem;
+}
+
+.arrow-top i {
+  font-size: 2.5rem;
+  padding: 0.5rem;
 }
 
 .mobile-menu-wrapper {
@@ -109,34 +119,57 @@ header i {
 .toggle-btn {
   position: absolute;
   z-index: 5;
+  top: 0;
   left: 0;
 }
 
-.table-content-mobile {
-  top: 5rem;
-  width: 50%;
-  height: 0px;
-  opacity: 0;
-  display: block;
-  clear: both;
-}
-
 .toggle-btn {
-  height: 50px;
-  width: 50px;
-  top: 0;
+  height: 5rem;
+  width: 5rem;
   display: none;
-}
-
-.toggle-btn .toggle {
-  height: 100%;
-  width: 100%;
   font-size: 4rem;
-  margin: auto;
+  text-align: center;
+  cursor: pointer;
 }
 
-.table-content,
 .table-content-mobile {
+  height: 100vh;
+  width: 0;
+  background-color: var(--primary-color);
+  overflow: hidden;
+  transition: 350ms;
+  padding-top: 5.5rem;
+}
+
+.table-content-mobile a {
+  padding: 1rem;
+  text-decoration: none;
+  font-size: 2rem;
+  color: var(--primary-text-color);
+  display: block;
+  transition: 0.3s;
+}
+
+.table-content-mobile a:hover {
+  color: #f1f1f1;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+  margin-left: 50rem;
+  height: 5rem;
+  width: 5rem;
+}
+
+a.closebtn {
+  font-size: 4rem;
+  padding: 0;
+  text-align: center;
+}
+
+.table-content {
   flex: 0 1 23%;
   height: 50vh;
   background-color: var(--primary-color);
@@ -158,6 +191,11 @@ header i {
   margin-bottom: 3rem;
 }
 
+.table-content-mobile h3 {
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
 .table-content ul,
 .table-content-mobile ul {
   display: flex;
@@ -168,13 +206,11 @@ header i {
   margin-bottom: 2rem;
 }
 
-.table-content li,
-.table-content-mobile li {
+.table-content li {
   border-bottom: var(--node-color) 1px solid;
 }
 
-.table-content ul li a,
-.table-content-mobile ul li a {
+.table-content ul li a {
   padding-top: 1rem;
   width: 100%;
   display: block;
@@ -291,14 +327,33 @@ code.nodejs {
   transition: none;
 }
 
-@media only screen and (min-width: 849px) {
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  header i {
+    font-size: 10rem;
+  }
+
+  .title-box h1 {
+    font-size: 5rem;
+  }
+
+  .title-box h3 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 767px) {
   .table-content-mobile,
   .toggle-btn {
     display: none;
   }
 }
-@media only screen and (max-width: 850px) {
-  header {
+
+@media only screen and (max-width: 768px) {
+  header.jumbotron {
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem 0;
@@ -310,6 +365,10 @@ code.nodejs {
 
   header i {
     font-size: 6rem;
+  }
+
+  .main-section:first-child {
+    margin-top: 3.5rem;
   }
 
   .title-box h1 {
@@ -332,13 +391,17 @@ code.nodejs {
     display: none;
   }
 
-  .content-text,
+  .content-text {
+    flex: 1;
+    width: 100%;
+  }
+
   .box {
-    flex: 1 1 100%;
-    padding: 2rem;
+    padding: 1rem;
   }
 
   .wrapper {
-    width: 90%;
+    width: 100%;
+    overflow-x: hidden;
   }
 }

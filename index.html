@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="jumbotron">
         <div class="title-box">
             <h1>Express Documentation Page</h1>
             <h3>Fast, unopinionated, minimalist web framework for <span>Node.js</span></h3>
@@ -31,8 +31,9 @@
             </ul>
         </div>
         <!-- <div class="mobile-menu-wrapper"> -->
-        <div class="toggle-btn"><a href="#null" class="toggle" onclick="toggle()">A</a></div>
-        <div class="table-content-mobile">
+        <div class="toggle-btn" onclick="openNav()">&#9776;</div>
+        <div id="mySidenav" class="table-content-mobile">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <h3>Getting Started</h3>
             <ul>
                 <li><a href="#installing">Installing</a></li>
@@ -262,26 +263,33 @@
             </section>
         </main>
     </div>
-    <div class="arrow-top"><a href="#">UP</a></div>
+    <a href="#" class="arrow-top"><i class="fas fa-chevron-up"></i></a>
 </body>
 <script>
-    function toggle(e) {
-        let toggleBtn = document.getElementsByClassName('table-content-mobile')[0]
-
-        if (!toggleBtn.classList.contains('active') && !toggleBtn.classList.contains('deactive')) {
-
-            toggleBtn.classList.add('active');
-
-        } else if (toggleBtn.classList.contains('active') && !toggleBtn.classList.contains('deactive')) {
-
-            toggleBtn.classList.remove('active');
-            toggleBtn.classList.add('reactive');
-
-        } else {
-            toggleBtn.classList.remove('deactive');
-            toggleBtn.classList.add('active');
-        }
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
     }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+    // function toggle(e) {
+    //     let toggleBtn = document.getElementsByClassName('table-content-mobile')[0]
+
+    //     if (!toggleBtn.classList.contains('active') && !toggleBtn.classList.contains('deactive')) {
+
+    //         toggleBtn.classList.add('active');
+
+    //     } else if (toggleBtn.classList.contains('active') && !toggleBtn.classList.contains('deactive')) {
+
+    //         toggleBtn.classList.remove('active');
+    //         toggleBtn.classList.add('reactive');
+
+    //     } else {
+    //         toggleBtn.classList.remove('deactive');
+    //         toggleBtn.classList.add('active');
+    //     }
+    // }
 </script>
 <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"
