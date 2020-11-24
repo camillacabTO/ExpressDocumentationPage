@@ -137,35 +137,33 @@ header i {
   width: 0;
   background-color: var(--primary-color);
   overflow: hidden;
-  transition: 350ms;
+  transition: 550ms;
   padding-top: 5.5rem;
 }
 
 .table-content-mobile a {
-  padding: 1rem;
+  margin-left: 1rem;
   text-decoration: none;
   font-size: 2rem;
   color: var(--primary-text-color);
-  display: block;
-  transition: 0.3s;
+  /* display: block; */
+  transition: border-color 550ms ease;
+  transition: 450ms;
+  border-bottom: var(--primary-color) 1px solid;
 }
 
 .table-content-mobile a:hover {
-  color: #f1f1f1;
+  border-bottom: var(--node-color) 1.5px solid;
 }
 
-.closebtn {
+a.closebtn {
   position: absolute;
   top: 0;
   right: 1.5rem;
   margin-left: 50rem;
   height: 5rem;
   width: 5rem;
-}
-
-a.closebtn {
   font-size: 4rem;
-  padding: 0;
   text-align: center;
 }
 
