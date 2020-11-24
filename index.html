@@ -19,34 +19,33 @@
         <i class="fab fa-node"></i>
     </header>
     <div class="wrapper">
-        <div class="table-content box">
-            <h3>Getting Started</h3>
-            <ul>
-                <li><a href="#installing">Installing</a></li>
-                <li><a href="#hello_world">Hello World</a></li>
-                <li><a href="#routing">Basic Routing</a></li>
-                <li><a href="#static_files">Static Files</a></li>
-                <li><a href="#middleware">Middleware</a></li>
-                <li><a href="#template_engines">Template Engines</a></li>
-            </ul>
-        </div>
+        <nav id="navbar" class="table-content box">
+            <header>Getting Started</header>
+            <a class="nav-link" href="#Installing">Installing</a>
+            <a class="nav-link" href="#Hello_World_example">Hello World example</a>
+            <a class="nav-link" href="#Basic_routing">Basic routing</a>
+            <a class="nav-link" href="#Serving_static_files_in_Express">Serving static files in Express</a>
+            <a class="nav-link" href="#Writing_middleware_for_use_in_Express_apps">Writing middleware for use in Express
+                apps</a>
+            <a class="nav-link" href="#Using_template_engines_with_Express">Using template engines with Express</a>
+        </nav>
         <!-- <div class="mobile-menu-wrapper"> -->
-        <div class="toggle-btn" onclick="openNav()">&#9776;</div>
+        <!-- <div class="toggle-btn" onclick="openNav()">&#9776;</div>
         <div id="side-nav" class="table-content-mobile">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <h3>Getting Started</h3>
             <ul>
-                <li><a href="#installing">Installing</a></li>
+                <li><a href="#Installing">Installing</a></li>
                 <li><a href="#hello_world">Hello World</a></li>
                 <li><a href="#routing">Basic Routing</a></li>
-                <li><a href="#static-files">Static Files</a></li>
+                <li><a href="#Serving_static_files_in_Express">Static Files</a></li>
                 <li><a href="#middleware">Middleware</a></li>
                 <li><a href="#template-engines">Template Engines</a></li>
             </ul>
-        </div>
+        </div> -->
         <!-- </div> -->
         <main class="content-text box" id="main-doc">
-            <section class="main-section" id="installing">
+            <section class="main-section" id="Installing">
                 <header>
                     <h3>Installing</h3>
                 </header>
@@ -77,7 +76,7 @@
                     <p>$ npm install express --no-save</p>
                 </code>
             </section>
-            <section class="main-section" id="hello_world">
+            <section class="main-section" id="Hello_World_example">
                 <header>
                     <h3>Hello World example</h3>
                 </header>
@@ -106,7 +105,7 @@
                 <code class="cmd-line">node app.js</code>
                 <p>Then, load <code class="code-span">http://localhost:3000/</code>in a browser to see the output.</p>
             </section>
-            <section class="main-section" id="routing">
+            <section class="main-section" id="Basic_routing">
                 <header>Basic routing</header>
                 <p><b><em>Routing</em></b> refers to determining how an application responds to a client request to a
                     particular endpoint, which is a URI (or path) and a specific HTTP request method (GET, POST, and so
@@ -141,7 +140,7 @@
                     <span class="black">&nbsp;res</span>.<span class="red">send</span>(<span class="green">'Got a DELETE request at /user'</span>) <br>
                   })</code>
             </section>
-            <section class="main-section" id="static_files">
+            <section class="main-section" id="Serving_static_files_in_Express">
                 <header>Serving static files in Express</header>
                 <p>To serve static files such as images, CSS files, and JavaScript files, use the express.static
                     built-in middleware function in Express.</p>
@@ -182,7 +181,7 @@
                 <code
                     class="nodejs"><span class="black">app</span>.<span class="red">use</span>(<span class="green">'/static'</span>, <span class="black">express</span>.<span class="blue">static</span>(<span class="black">path</span>.<span class="span red">join</span>(<span class="black">__dirname</span>, <span class="green">'public'</span>)))</code>
             </section>
-            <section class="main-section" id="middleware">
+            <section class="main-section" id="Writing_middleware_for_use_in_Express_apps">
                 <header>Writing middleware for use in Express apps</header>
                 <p><b><em>Middleware</em></b> functions are functions that have access to the request object (<code
                         class="code-span">req</code>), the response object (<code class="code-span">res</code>), and the
@@ -223,7 +222,7 @@
                             <p><span class="black">app</span>.<span class="red">listen</span>(<span class="orange">3000</span>)</p>
                 </code>
             </section>
-            <section class="main-section" id="template_engines">
+            <section class="main-section" id="Using_template_engines_with_Express">
                 <header>Using template engines with Express</header>
                 <p>A <b><em>template engine</em></b> enables you to use static template files in your application. At
                     runtime, the template engine replaces variables in a template file with actual values, and
