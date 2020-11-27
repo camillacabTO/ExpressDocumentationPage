@@ -82,7 +82,7 @@
                     <h3>Hello World example</h3>
                 </header>
                 <code class="nodejs">
-                    <p><span class="purple">const</span> express = <span class="blue">require<span>(<span class="green">&apos;express&apos;</span>)</p>
+                    <p><span class="purple">const</span> express = <span class="blue">require</span>(<span class="green">&apos;express&apos;</span>)</p>
                     <p><span class="purple">const</span> app = <span class="blue">express</span>()</p>
                     <p><span class="purple">const</span> port = <span class="orange">3000</span></p>
                     <br>
@@ -107,7 +107,9 @@
                 <p>Then, load <code class="code-span">http://localhost:3000/</code>in a browser to see the output.</p>
             </section>
             <section class="main-section" id="routing">
-                <header>Basic routing</header>
+                <header>
+                    <h3>Basic routing</h3>
+                </header>
                 <p><b><em>Routing</em></b> refers to determining how an application responds to a client request to a
                     particular endpoint, which is a URI (or path) and a specific HTTP request method (GET, POST, and so
                     on).</p>
@@ -142,7 +144,9 @@
                   })</code>
             </section>
             <section class="main-section" id="static_files">
-                <header>Serving static files in Express</header>
+                <header>
+                    <h3>Serving static files in Express</h3>
+                </header>
                 <p>To serve static files such as images, CSS files, and JavaScript files, use the express.static
                     built-in middleware function in Express.</p>
                 <p>The function signature is:</p>
@@ -209,7 +213,7 @@
                     middleware function. For example, the following code loads the <code
                         class="code-span">myLogger</code> middleware function before the route to the root path (/).</p>
                 <code class="nodejs">
-                            <p><span class="purple">const</span> express = <span class="blue">require<span>(<span class="green">&apos;express&apos;</span>)</p>
+                            <p><span class="purple">const</span> express = <span class="blue">require</span>(<span class="green">&apos;express&apos;</span>)</p>
                             <p><span class="purple">const</span> app = <span class="blue">express</span>()</p>
                             <br>
                             <p><span class="blue">var </span><span class="black">myLogger</span> = <span class="blue">function</span> (<span class="black">req</span>, <span class="black">res</span>, <span class="black">next</span>) { </p>
@@ -224,7 +228,9 @@
                 </code>
             </section>
             <section class="main-section" id="template_engines">
-                <header>Using template engines with Express</header>
+                <header>
+                    <h3>Using template engines with Express</h3>
+                </header>
                 <p>A <b><em>template engine</em></b> enables you to use static template files in your application. At
                     runtime, the template engine replaces variables in a template file with actual values, and
                     transforms the template into an HTML file sent to the client. This approach makes it easier to
